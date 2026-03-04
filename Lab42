@@ -1,0 +1,26 @@
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+np.random.seed(42)
+
+uniform = np.random.uniform(-1, 1, size=5000)
+normal = np.random.normal(loc=0, scale=1, size=5000)
+
+print("Uniform - Mean:", round(uniform.mean(), 3), "Std:", round(uniform.std(), 3))
+print("Normal  - Mean:", round(normal.mean(), 3), "Std:", round(normal.std(), 3))
+
+print("First 10 Uniform samples:", uniform[:10].round(2))
+print("First 10 Normal samples:", normal[:10].round(2))
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+
+sns.histplot(uniform, bins=30, stat="density", kde=True, ax=axes[0], color="steelblue")
+axes[0].set_title("Uniform Distribution")
+
+sns.histplot(normal, bins=40, stat="density", kde=True, ax=axes[1], color="coral")
+axes[1].set_title("Normal Distribution")
+
+plt.tight_layout()
+plt.savefig("day42_distributions_final.png", dpi=150)
+plt.show()
